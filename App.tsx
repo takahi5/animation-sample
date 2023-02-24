@@ -1,6 +1,8 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Home } from "./screens/Home";
+import { PlayLottie } from "./screens/PlayLottie";
 import { Uploader } from "./screens/Uploader";
 
 const Stack = createNativeStackNavigator();
@@ -9,7 +11,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="アップロード画面サンプル" component={Uploader} />
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="PlayLottie" component={PlayLottie} />
+        <Stack.Screen name="Uploader" component={Uploader} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -11,6 +11,10 @@ export const Home: React.FC<Props> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Button
+        title="Play Lottie"
+        onPress={() => navigation.navigate("PlayLottie")}
+      />
+      <Button
         title="Uploader"
         onPress={() => navigation.navigate("Uploader")}
       />
@@ -19,5 +23,9 @@ export const Home: React.FC<Props> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
