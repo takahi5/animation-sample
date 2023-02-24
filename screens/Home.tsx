@@ -19,6 +19,7 @@ export const Home: React.FC<Props> = ({ navigation }) => {
         title="Control Lottie"
         onPress={() => navigation.navigate("ControlLottie")}
       />
+      <Button title="Loading" onPress={() => navigation.navigate("Loading")} />
       <Button
         title="Uploader"
         onPress={() => navigation.navigate("Uploader")}
