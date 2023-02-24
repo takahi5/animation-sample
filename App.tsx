@@ -1,45 +1,61 @@
 import React, { useRef, useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Button, SafeAreaView } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import Lottie from "lottie-react-native";
+
+const callFakeAPI = async () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("success");
+    }, 2000);
+  });
+};
 
 export default function App() {
   const animation: React.LegacyRef<Lottie> | undefined = useRef(null);
+  const [isLiked, setIsLiked] = useState(false);
 
-  const play = () => {
+  useEffect(() => {
+    init();
+  }, []);
+
+  const init = () => {
     // temp ios fix begin
     // @see https://github.com/lottie-react-native/lottie-react-native/issues/832
     setTimeout(() => {
-      animation.current?.play();
+      animation.current?.play(0, 1);
     }, 0);
   };
 
-  const pause = () => {
+  const like = () => {
+    // temp ios fix begin
+    // @see https://github.com/lottie-react-native/lottie-react-native/issues/832
     setTimeout(() => {
-      animation.current?.pause();
+      animation.current?.play(0, 19);
     }, 0);
   };
 
-  const reset = () => {
-    setTimeout(() => {
-      animation.current?.reset();
-    }, 0);
+  const onPressLike = () => {
+    if (isLiked) {
+      init();
+      setIsLiked(false);
+    } else {
+      like();
+      setIsLiked(true);
+    }
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Lottie
-        source={require("./assets/happy-valentines-day.json")}
-        ref={animation}
-        loop
-      />
-      <View>
-        <Button onPress={play} title="Play" />
-        <Button onPress={pause} title="Pause" />
-        <Button onPress={reset} title="Reset" />
-      </View>
+    <View style={styles.container}>
+      <Pressable onPress={onPressLike} style={{ width: 200, height: 200 }}>
+        <Lottie
+          source={require("./assets/like.json")}
+          ref={animation}
+          loop={false}
+        />
+      </Pressable>
       <StatusBar style="auto" />
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -47,5 +63,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
