@@ -3,5 +3,6 @@ export type RootStackParamList = {
   PlayLottie: undefined;
   ControlLottie: undefined;
   Loading: undefined;
+  Like: undefined;
   Uploader: undefined;
 };
