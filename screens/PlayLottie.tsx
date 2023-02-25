@@ -13,11 +13,7 @@ export const PlayLottie: React.FC<Props> = ({}) => {
   const animation: React.LegacyRef<Lottie> | undefined = useRef(null);
 
   useEffect(() => {
-    // temp ios fix begin
-    // @see https://github.com/lottie-react-native/lottie-react-native/issues/832
-    setTimeout(() => {
-      animation.current?.play();
-    }, 0);
+    animation.current?.play();
   }, []);
 
   return (
