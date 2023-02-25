@@ -1,7 +1,8 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import Lottie from "lottie-react-native";
 import React, { useRef, useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import Lottie from "lottie-react-native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
 import { RootStackParamList } from "../types/navigation";
 
 const callFakeAPI = async () => {
@@ -16,7 +17,7 @@ type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, "Loading">;
 };
 
-export const Loading: React.FC<Props> = ({}) => {
+export const Loading: React.FC<Props> = () => {
   const animation: React.LegacyRef<Lottie> | undefined = useRef(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 

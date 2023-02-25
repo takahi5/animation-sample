@@ -1,11 +1,12 @@
-import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Home } from "./screens/Home";
-import { PlayLottie } from "./screens/PlayLottie";
+import React from "react";
+
 import { ControlLottie } from "./screens/ControlLottie";
-import { Loading } from "./screens/Loading";
+import { Home } from "./screens/Home";
 import { Like } from "./screens/Like";
+import { Loading } from "./screens/Loading";
+import { PlayLottie } from "./screens/PlayLottie";
 import { Uploader } from "./screens/Uploader";
 
 const Stack = createNativeStackNavigator();

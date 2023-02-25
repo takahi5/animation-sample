@@ -1,15 +1,16 @@
-import React, { useRef, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
-import Lottie from "lottie-react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StatusBar } from "expo-status-bar";
+import Lottie from "lottie-react-native";
+import React, { useRef, useEffect } from "react";
+import { StyleSheet, View } from "react-native";
+
 import { RootStackParamList } from "../types/navigation";
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, "PlayLottie">;
 };
 
-export const PlayLottie: React.FC<Props> = ({}) => {
+export const PlayLottie: React.FC<Props> = () => {
   const animation: React.LegacyRef<Lottie> | undefined = useRef(null);
 
   useEffect(() => {

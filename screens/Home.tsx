@@ -1,7 +1,8 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React from "react";
 import { View, ScrollView, StyleSheet, Button, Text } from "react-native";
+
 import { RootStackParamList } from "../types/navigation";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, "Uploader">;

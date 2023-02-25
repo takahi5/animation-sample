@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { Pressable, StyleSheet, View, Text, Button } from "react-native";
 import Lottie from "lottie-react-native";
+import React, { useRef, useEffect, useState } from "react";
+import { StyleSheet, View, Text, Button } from "react-native";
 
 const callFakeAPI = async () => {
   return new Promise((resolve, reject) => {
@@ -60,7 +60,6 @@ const StatusItem = ({ text, status }: StatusItemProps) => {
 };
 
 export const Uploader = () => {
-  const animation: React.LegacyRef<Lottie> | undefined = useRef(null);
   const [step, setStep] = useState(0);
 
   const upload = async () => {
