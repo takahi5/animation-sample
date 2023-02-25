@@ -1,3 +1,3 @@
 module.exports = {
-  extends: "universe",
+  extends: ["universe/native", "plugin:react-hooks/recommended"],
 };

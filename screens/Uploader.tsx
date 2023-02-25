@@ -45,7 +45,7 @@ const StatusItem = ({ text, status }: StatusItemProps) => {
           <Lottie
             source={require("../assets/processing.json")}
             ref={animationProcessing}
-            loop={true}
+            loop
           />
         ) : status === "completed" ? (
           <Lottie
