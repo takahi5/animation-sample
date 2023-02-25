@@ -14,23 +14,15 @@ export const ControlLottie: React.FC<Props> = () => {
   const animation: React.LegacyRef<Lottie> | undefined = useRef(null);
 
   const play = () => {
-    // temp ios fix begin
-    // @see https://github.com/lottie-react-native/lottie-react-native/issues/832
-    setTimeout(() => {
-      animation.current?.play();
-    }, 0);
+    animation.current?.play();
   };
 
   const pause = () => {
-    setTimeout(() => {
-      animation.current?.pause();
-    }, 0);
+    animation.current?.pause();
   };
 
   const reset = () => {
-    setTimeout(() => {
-      animation.current?.reset();
-    }, 0);
+    animation.current?.reset();
   };
 
   return (

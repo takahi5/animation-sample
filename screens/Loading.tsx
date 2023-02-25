@@ -18,16 +18,9 @@ type Props = {
 };
 
 export const Loading: React.FC<Props> = () => {
-  const animation: React.LegacyRef<Lottie> | undefined = useRef(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // temp ios fix begin
-    // @see https://github.com/lottie-react-native/lottie-react-native/issues/832
-    setTimeout(() => {
-      animation.current?.play();
-    }, 0);
-
     // ダミーのAPIを呼ぶ
     callFakeAPI().then(() => {
       setIsLoading(false);
@@ -42,7 +35,6 @@ export const Loading: React.FC<Props> = () => {
             width: 100,
           }}
           source={require("../assets/loading.json")}
-          ref={animation}
           loop
           autoPlay
         />

@@ -19,19 +19,11 @@ export const Like: React.FC<Props> = () => {
   }, []);
 
   const init = () => {
-    // temp ios fix begin
-    // @see https://github.com/lottie-react-native/lottie-react-native/issues/832
-    setTimeout(() => {
-      animation.current?.play(0, 1);
-    }, 0);
+    animation.current?.play(0, 1);
   };
 
   const like = () => {
-    // temp ios fix begin
-    // @see https://github.com/lottie-react-native/lottie-react-native/issues/832
-    setTimeout(() => {
-      animation.current?.play(0, 19);
-    }, 0);
+    animation.current?.play(0, 19);
   };
 
   const onPressLike = () => {

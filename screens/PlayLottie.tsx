@@ -1,7 +1,7 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import Lottie from "lottie-react-native";
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
 
 import { RootStackParamList } from "../types/navigation";
@@ -11,15 +11,9 @@ type Props = {
 };
 
 export const PlayLottie: React.FC<Props> = () => {
-  const animation: React.LegacyRef<Lottie> | undefined = useRef(null);
-
-  useEffect(() => {
-    animation.current?.play();
-  }, []);
-
   return (
     <View style={styles.container}>
-      <Lottie source={require("../assets/loading.json")} ref={animation} loop />
+      <Lottie source={require("../assets/loading.json")} loop autoPlay />
       <StatusBar style="auto" />
     </View>
   );
