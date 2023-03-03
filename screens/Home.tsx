@@ -30,6 +30,11 @@ export const Home: React.FC<Props> = ({ navigation }) => {
           title="Uploader"
           onPress={() => navigation.navigate("Uploader")}
         />
+        <Text style={styles.title}>Moti</Text>
+        <Button
+          title="Moti Tutorial"
+          onPress={() => navigation.navigate("MotiTutorial")}
+        />
       </View>
     </ScrollView>
   );
