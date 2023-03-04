@@ -31,14 +31,18 @@ type ToDo = {
 const ToDoItem = ({ toTo, onPressDone }: ToDoItemProps) => {
   const { id, title, isDone } = toTo;
   return (
-    <View style={styles.toDoContainer}>
+    <MotiView
+      style={styles.toDoContainer}
+      from={{ opacity: 0, translateX: -300 }}
+      animate={{ opacity: 1, translateX: 0 }}
+    >
       <Checkbox
         style={styles.checkbox}
         value={isDone}
         onValueChange={() => onPressDone(id)}
       />
       <Text style={styles.text}>{title}</Text>
-    </View>
+    </MotiView>
   );
 };
 
