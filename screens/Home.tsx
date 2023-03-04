@@ -35,6 +35,10 @@ export const Home: React.FC<Props> = ({ navigation }) => {
           title="Moti Tutorial"
           onPress={() => navigation.navigate("MotiTutorial")}
         />
+        <Button
+          title="ToDo List"
+          onPress={() => navigation.navigate("ToDoList")}
+        />
       </View>
     </ScrollView>
   );
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    margin: 10,
+    marginTop: 30,
     fontWeight: "bold",
     color: "grey",
   },

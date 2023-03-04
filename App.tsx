@@ -12,6 +12,7 @@ import { Loading } from "./screens/Loading";
 import { PlayLottie } from "./screens/PlayLottie";
 import { Uploader } from "./screens/Uploader";
 import { MotiTutorial } from "./screens/MotiTutorial";
+import { ToDoList } from "./screens/ToDoList";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ export default function App() {
         <Stack.Screen name="Like" component={Like} />
         <Stack.Screen name="Uploader" component={Uploader} />
         <Stack.Screen name="MotiTutorial" component={MotiTutorial} />
+        <Stack.Screen name="ToDoList" component={ToDoList} />
       </Stack.Navigator>
     </NavigationContainer>
   );

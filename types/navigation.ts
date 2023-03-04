@@ -6,4 +6,5 @@ export type RootStackParamList = {
   Like: undefined;
   Uploader: undefined;
   MotiTutorial: undefined;
+  ToDoList: undefined;
 };
