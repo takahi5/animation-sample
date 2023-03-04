@@ -34,7 +34,7 @@ const ToDoItem = ({ toTo, onPressDone }: ToDoItemProps) => {
     <MotiView
       style={styles.toDoContainer}
       from={{ opacity: 0, translateX: -300 }}
-      animate={{ opacity: 1, translateX: 0 }}
+      animate={{ opacity: isDone ? 0.3 : 1, translateX: 0 }}
     >
       <Checkbox
         style={styles.checkbox}
