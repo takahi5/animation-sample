@@ -39,6 +39,7 @@ export const Home: React.FC<Props> = ({ navigation }) => {
           title="ToDo List"
           onPress={() => navigation.navigate("ToDoList")}
         />
+        <Button title="Gauge" onPress={() => navigation.navigate("Gauge")} />
       </View>
     </ScrollView>
   );
