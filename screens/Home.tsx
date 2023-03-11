@@ -36,6 +36,10 @@ export const Home: React.FC<Props> = ({ navigation }) => {
           onPress={() => navigation.navigate("MotiTutorial")}
         />
         <Button
+          title="Moti Repeat"
+          onPress={() => navigation.navigate("MotiRepeat")}
+        />
+        <Button
           title="ToDo List"
           onPress={() => navigation.navigate("ToDoList")}
         />
