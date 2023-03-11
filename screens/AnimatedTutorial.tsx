@@ -46,8 +46,9 @@ export const AnimatedTutorial: React.FC<Props> = () => {
   const onPressMove = () => {
     Animated.timing(animatedXValue, {
       toValue: 100,
-      duration: 1000,
+      duration: 5000,
       useNativeDriver: true,
+      easing: Easing.linear,
       // easing: Easing.bounce,
       // easing: Easing.back(2),
       // easing: Easing.elastic(2),
@@ -66,7 +67,14 @@ export const AnimatedTutorial: React.FC<Props> = () => {
             opacity: animatedOpacityValue, // Bind opacity to animated value
           }}
         >
-          <View style={{ width: 100, height: 100, backgroundColor: "red" }} />
+          <View
+            style={{
+              width: 100,
+              height: 100,
+              margin: 10,
+              backgroundColor: "red",
+            }}
+          />
         </Animated.View>
         <Button title="Fade out" onPress={onPressFadeOut} />
         <Button title="Fade in" onPress={onPressFadeIn} />
@@ -80,7 +88,37 @@ export const AnimatedTutorial: React.FC<Props> = () => {
             ],
           }}
         >
-          <View style={{ width: 100, height: 100, backgroundColor: "green" }} />
+          <View
+            style={{
+              width: 100,
+              height: 100,
+              margin: 10,
+              backgroundColor: "green",
+            }}
+          />
+        </Animated.View>
+        <Animated.View
+          style={{
+            opacity: animatedXValue.interpolate({
+              inputRange: [0, 50],
+              outputRange: [0, 0.5],
+              extrapolate: "clamp",
+            }),
+            transform: [
+              {
+                translateX: animatedXValue,
+              },
+            ],
+          }}
+        >
+          <View
+            style={{
+              width: 100,
+              height: 100,
+              margin: 10,
+              backgroundColor: "blue",
+            }}
+          />
         </Animated.View>
         <Button title="Move" onPress={onPressMove} />
         <Button title="Reset" onPress={onPressReset} />
