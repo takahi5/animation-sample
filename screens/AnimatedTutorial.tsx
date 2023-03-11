@@ -18,6 +18,7 @@ type Props = {
 export const AnimatedTutorial: React.FC<Props> = () => {
   const animatedOpacityValue = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
   const animatedXValue = useRef(new Animated.Value(0)).current;
+  const animatedScrollYValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.timing(animatedOpacityValue, {
@@ -60,7 +61,13 @@ export const AnimatedTutorial: React.FC<Props> = () => {
   };
 
   return (
-    <ScrollView>
+    <Animated.ScrollView
+      scrollEventThrottle={1}
+      onScroll={Animated.event(
+        [{ nativeEvent: { contentOffset: { y: animatedScrollYValue } } }],
+        { useNativeDriver: true }
+      )}
+    >
       <View style={styles.container}>
         <Animated.View // Special animatable View
           style={{
@@ -122,8 +129,27 @@ export const AnimatedTutorial: React.FC<Props> = () => {
         </Animated.View>
         <Button title="Move" onPress={onPressMove} />
         <Button title="Reset" onPress={onPressReset} />
+        <View style={styles.spacer} />
+        <Animated.View
+          style={{
+            opacity: animatedScrollYValue.interpolate({
+              inputRange: [0, 100],
+              outputRange: [0, 1],
+            }),
+          }}
+        >
+          <View
+            style={{
+              width: 100,
+              height: 100,
+              margin: 10,
+              backgroundColor: "black",
+            }}
+          />
+        </Animated.View>
+        <View style={{ height: 300 }} />
       </View>
-    </ScrollView>
+    </Animated.ScrollView>
   );
 };
 
