@@ -1,8 +1,6 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StatusBar } from "expo-status-bar";
-import Lottie from "lottie-react-native";
-import React from "react";
-import { StyleSheet, View } from "react-native";
+import React, { useRef, useEffect } from "react";
+import { StyleSheet, View, Animated } from "react-native";
 
 import { RootStackParamList } from "../types/navigation";
 
@@ -11,10 +9,25 @@ type Props = {
 };
 
 export const AnimatedTutorial: React.FC<Props> = () => {
+  const animatedOpacityValue = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
+
+  useEffect(() => {
+    Animated.timing(animatedOpacityValue, {
+      toValue: 1,
+      duration: 10000,
+      useNativeDriver: true,
+    }).start();
+  }, [animatedOpacityValue]);
+
   return (
     <View style={styles.container}>
-      <Lottie source={require("../assets/loading.json")} loop autoPlay />
-      <StatusBar style="auto" />
+      <Animated.View // Special animatable View
+        style={{
+          opacity: animatedOpacityValue, // Bind opacity to animated value
+        }}
+      >
+        <View style={{ width: 100, height: 100, backgroundColor: "red" }} />
+      </Animated.View>
     </View>
   );
 };
