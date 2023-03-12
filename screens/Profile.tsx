@@ -1,15 +1,6 @@
-import { Ionicons } from "@expo/vector-icons";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { BlurView } from "expo-blur";
 import React, { useRef } from "react";
-import {
-  StyleSheet,
-  View,
-  Image,
-  Animated,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, Animated } from "react-native";
 
 import { RootStackParamList } from "../types/navigation";
 
@@ -24,6 +15,7 @@ const MAX_AVATAR_SIZE = 100;
 const MIN_AVATAR_SIZE = 70;
 const AVATAR_TOP = MAX_HEADER_HEIGHT - MAX_AVATAR_SIZE / 2;
 const AVATAR_TOP_DEST = MIN_HEADER_HEIGHT;
+const BLUR_RADIUS = 20;
 
 export const Profile: React.FC<Props> = ({ navigation }) => {
   const animatedScrollY = useRef(new Animated.Value(0)).current;
@@ -70,10 +62,19 @@ export const Profile: React.FC<Props> = ({ navigation }) => {
           },
         ]}
       >
-        <Image
+        <Animated.Image
           source={require("../assets/cover.jpg")}
           style={styles.cover}
           resizeMethod="auto"
+          blurRadius={animatedScrollY.interpolate({
+            inputRange: [
+              0,
+              HEADER_SCROLL_RANGE + MIN_AVATAR_SIZE,
+              HEADER_SCROLL_RANGE + MIN_AVATAR_SIZE + 20,
+            ],
+            outputRange: [0, 0, BLUR_RADIUS],
+            extrapolate: "clamp",
+          })}
         />
       </Animated.View>
       <Animated.Image
