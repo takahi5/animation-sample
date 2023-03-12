@@ -10,4 +10,5 @@ export type RootStackParamList = {
   ToDoList: undefined;
   Gauge: undefined;
   AnimatedTutorial: undefined;
+  Profile: undefined;
 };

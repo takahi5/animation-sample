@@ -16,6 +16,7 @@ import { MotiRepeat } from "./screens/MotiRepeat";
 import { ToDoList } from "./screens/ToDoList";
 import { Gauge } from "./screens/Gauge";
 import { AnimatedTutorial } from "./screens/AnimatedTutorial";
+import { Profile } from "./screens/Profile";
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,7 @@ export default function App() {
         <Stack.Screen name="ToDoList" component={ToDoList} />
         <Stack.Screen name="Gauge" component={Gauge} />
         <Stack.Screen name="AnimatedTutorial" component={AnimatedTutorial} />
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
