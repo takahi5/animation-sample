@@ -51,12 +51,16 @@ export const Profile: React.FC<Props> = ({ navigation }) => {
         <View style={styles.item} />
         <View style={styles.item} />
       </Animated.ScrollView>
-      <View
+      <Animated.View
         style={[
           styles.headerImage,
           // TODO: ヘッダー画像をアニメーションさせる
           {
-            height: MAX_HEADER_HEIGHT,
+            height: animatedScrollY.interpolate({
+              inputRange: [0, MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT],
+              outputRange: [MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT],
+              extrapolate: "clamp",
+            }),
             zIndex: 0,
           },
         ]}
@@ -66,7 +70,7 @@ export const Profile: React.FC<Props> = ({ navigation }) => {
           style={styles.cover}
           resizeMethod="auto"
         />
-      </View>
+      </Animated.View>
       <Animated.Image
         source={require("../assets/avatar.jpg")}
         style={[
