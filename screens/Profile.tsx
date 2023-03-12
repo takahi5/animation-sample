@@ -21,6 +21,7 @@ const MAX_HEADER_HEIGHT = 150;
 const MIN_HEADER_HEIGHT = 80;
 const HEADER_SCROLL_RANGE = MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT;
 const MAX_AVATAR_SIZE = 100;
+const MIN_AVATAR_SIZE = 70;
 const AVATAR_TOP = MAX_HEADER_HEIGHT - MAX_AVATAR_SIZE / 2;
 
 export const Profile: React.FC<Props> = ({ navigation }) => {
@@ -72,12 +73,20 @@ export const Profile: React.FC<Props> = ({ navigation }) => {
           styles.avatar,
           // TODO: アバター画像をアニメーションさせる
           {
-            width: MAX_AVATAR_SIZE,
-            height: MAX_AVATAR_SIZE,
             zIndex: 1,
             top: animatedScrollY.interpolate({
               inputRange: [0, 100],
               outputRange: [AVATAR_TOP, AVATAR_TOP - 100],
+            }),
+            width: animatedScrollY.interpolate({
+              inputRange: [0, 100],
+              outputRange: [MAX_AVATAR_SIZE, MIN_AVATAR_SIZE],
+              extrapolate: "clamp",
+            }),
+            height: animatedScrollY.interpolate({
+              inputRange: [0, 100],
+              outputRange: [MAX_AVATAR_SIZE, MIN_AVATAR_SIZE],
+              extrapolate: "clamp",
             }),
           },
         ]}
