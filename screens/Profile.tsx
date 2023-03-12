@@ -57,11 +57,15 @@ export const Profile: React.FC<Props> = ({ navigation }) => {
           // TODO: ヘッダー画像をアニメーションさせる
           {
             height: animatedScrollY.interpolate({
-              inputRange: [0, MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT],
+              inputRange: [0, HEADER_SCROLL_RANGE],
               outputRange: [MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT],
               extrapolate: "clamp",
             }),
-            zIndex: 0,
+            zIndex: animatedScrollY.interpolate({
+              inputRange: [0, HEADER_SCROLL_RANGE],
+              outputRange: [0, 1],
+              extrapolate: "clamp",
+            }),
           },
         ]}
       >
@@ -77,7 +81,11 @@ export const Profile: React.FC<Props> = ({ navigation }) => {
           styles.avatar,
           // TODO: アバター画像をアニメーションさせる
           {
-            zIndex: 1,
+            zIndex: animatedScrollY.interpolate({
+              inputRange: [0, HEADER_SCROLL_RANGE],
+              outputRange: [1, 0],
+              extrapolate: "clamp",
+            }),
             top: animatedScrollY.interpolate({
               inputRange: [0, 100],
               outputRange: [AVATAR_TOP, AVATAR_TOP - 100],
