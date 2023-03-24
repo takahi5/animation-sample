@@ -8,13 +8,12 @@ type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, "Profile">;
 };
 
-const MAX_HEADER_HEIGHT = 150;
-const MIN_HEADER_HEIGHT = 80;
-const HEADER_SCROLL_RANGE = MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT;
+const HEADER_SCROLL_RANGE = 70;
+const HEADER_HEIGHT = 150;
 const MAX_AVATAR_SIZE = 100;
 const MIN_AVATAR_SIZE = 70;
-const AVATAR_TOP = MAX_HEADER_HEIGHT - MAX_AVATAR_SIZE / 2;
-const AVATAR_TOP_DEST = MIN_HEADER_HEIGHT;
+const AVATAR_TOP = HEADER_HEIGHT - MAX_AVATAR_SIZE / 2;
+const AVATAR_TOP_DEST = HEADER_HEIGHT - HEADER_SCROLL_RANGE;
 const BLUR_RADIUS = 20;
 
 export const Profile: React.FC<Props> = ({ navigation }) => {
@@ -29,7 +28,7 @@ export const Profile: React.FC<Props> = ({ navigation }) => {
           { useNativeDriver: false }
         )}
       >
-        <View style={{ height: MAX_HEADER_HEIGHT * 1.5 }} />
+        <View style={{ height: HEADER_HEIGHT * 1.5 }} />
         <View style={styles.item} />
         <View style={styles.item} />
         <View style={styles.item} />
@@ -47,11 +46,10 @@ export const Profile: React.FC<Props> = ({ navigation }) => {
       <Animated.View
         style={[
           styles.headerImage,
-          // TODO: ヘッダー画像をアニメーションさせる
           {
-            height: animatedScrollY.interpolate({
+            top: animatedScrollY.interpolate({
               inputRange: [0, HEADER_SCROLL_RANGE],
-              outputRange: [MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT],
+              outputRange: [0, -HEADER_SCROLL_RANGE],
               extrapolate: "clamp",
             }),
             zIndex: animatedScrollY.interpolate({
@@ -81,7 +79,6 @@ export const Profile: React.FC<Props> = ({ navigation }) => {
         source={require("../assets/avatar.jpg")}
         style={[
           styles.avatar,
-          // TODO: アバター画像をアニメーションさせる
           {
             zIndex: animatedScrollY.interpolate({
               inputRange: [0, HEADER_SCROLL_RANGE],
@@ -121,12 +118,13 @@ const styles = StyleSheet.create({
   cover: {
     flex: 1,
     width: "100%",
+    height: 100,
   },
   headerImage: {
     position: "absolute",
-    top: 0,
     left: 0,
     right: 0,
+    height: HEADER_HEIGHT,
     width: "100%",
     backgroundColor: "red",
   },
@@ -145,7 +143,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     width: "100%",
-    height: MIN_HEADER_HEIGHT,
+    height: HEADER_HEIGHT,
     zIndex: 2,
   },
   backButton: {
