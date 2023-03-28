@@ -17,6 +17,7 @@ import { ToDoList } from "./screens/ToDoList";
 import { Gauge } from "./screens/Gauge";
 import { AnimatedTutorial } from "./screens/AnimatedTutorial";
 import { Profile } from "./screens/Profile";
+import { Tinder } from "./screens/Tinder";
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,7 @@ export default function App() {
         <Stack.Screen name="Gauge" component={Gauge} />
         <Stack.Screen name="AnimatedTutorial" component={AnimatedTutorial} />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Tinder" component={Tinder} />
       </Stack.Navigator>
     </NavigationContainer>
   );

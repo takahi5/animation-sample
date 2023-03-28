@@ -11,4 +11,5 @@ export type RootStackParamList = {
   Gauge: undefined;
   AnimatedTutorial: undefined;
   Profile: undefined;
+  Tinder: undefined;
 };
