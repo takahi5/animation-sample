@@ -4,6 +4,8 @@ import { StyleSheet, View, Animated, PanResponder } from "react-native";
 
 import { RootStackParamList } from "../types/navigation";
 
+const SWIPE_THRESHOLD = 100;
+
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, "Tinder">;
 };
@@ -18,11 +20,31 @@ export const Tinder: React.FC<Props> = () => {
         [null, { dx: animatedPan.x, dy: animatedPan.y }],
         { useNativeDriver: false }
       ),
-      onPanResponderRelease: () => {
-        Animated.spring(animatedPan, {
-          toValue: { x: 0, y: 0 },
-          useNativeDriver: true,
-        }).start();
+      onPanResponderRelease: (_e, gestureState) => {
+        if (gestureState.dx > SWIPE_THRESHOLD) {
+          Animated.timing(animatedPan, {
+            toValue: {
+              x: 500,
+              y: gestureState.dy + 200 * Math.sign(gestureState.dy),
+            },
+            duration: 300,
+            useNativeDriver: true,
+          }).start(() => animatedPan.setValue({ x: 0, y: 0 }));
+        } else if (gestureState.dx < -SWIPE_THRESHOLD) {
+          Animated.timing(animatedPan, {
+            toValue: {
+              x: -500,
+              y: gestureState.dy + 200 * Math.sign(gestureState.dy),
+            },
+            duration: 300,
+            useNativeDriver: true,
+          }).start(() => animatedPan.setValue({ x: 0, y: 0 }));
+        } else {
+          Animated.spring(animatedPan, {
+            toValue: { x: 0, y: 0 },
+            useNativeDriver: true,
+          }).start();
+        }
       },
     })
   ).current;
