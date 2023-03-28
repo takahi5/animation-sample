@@ -19,7 +19,10 @@ export const Tinder: React.FC<Props> = () => {
         { useNativeDriver: false }
       ),
       onPanResponderRelease: () => {
-        animatedPan.extractOffset();
+        Animated.spring(animatedPan, {
+          toValue: { x: 0, y: 0 },
+          useNativeDriver: true,
+        }).start();
       },
     })
   ).current;
