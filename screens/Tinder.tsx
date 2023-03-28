@@ -31,6 +31,13 @@ export const Tinder: React.FC<Props> = () => {
           transform: [
             { translateX: animatedPan.x },
             { translateY: animatedPan.y },
+            {
+              rotate: animatedPan.x.interpolate({
+                inputRange: [-100, 0, 100],
+                outputRange: ["-30deg", "0deg", "30deg"],
+                extrapolate: "clamp",
+              }),
+            },
           ],
         }}
         {...panResponder.panHandlers}
